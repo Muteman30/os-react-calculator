@@ -1,7 +1,9 @@
 import React from 'react';
+import './Display.css';
 
-export default function Display() {
+export default function Display({displayValue}) {
     return (
-        <div className="display"></div>
+        <div className="display">5000</div>
     )
 }
+
