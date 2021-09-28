@@ -2,8 +2,8 @@ import React from 'react';
 import './Display.css';
 
 export default function Display({displayValue}) {
+    const numFormat = Intl.NumberFormat('en-GB')
     return (
-        <div className="display">5000</div>
+        <div className="display">{numFormat.format(displayValue)}</div>
     )
 }
-
