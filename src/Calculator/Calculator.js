@@ -11,22 +11,44 @@ const initialState = {
 }
 
 export default function Calculator() {
-    const buttons = ['AC','C','+/-', '' ,1, 2, 3, '+',4,5,6,'-',7,8,9, 'X',0, '.', '=', '/'];
+    const buttons = [
+        {label: 'AC', id:'ac'},
+        {label: 'C', id:'c'},
+        {label: '+/-', id:'plusminus'},
+        {label: '', id:''},
+        {label: 1, id:1},
+        {label: 2, id:2},
+        {label: 3, id:3},
+        {label: '+', id:'add'},
+        {label: 4, id:4},
+        {label: 5, id:5},
+        {label: 6, id:6},
+        {label: '-', id:'subtract'},
+        {label: 7, id:7},
+        {label: 8, id:8},
+        {label: 9, id:9},
+        {label: 'X', id:'multiply'},
+        {label: 0, id:0},
+        {label: '.', id:'decimal'},
+        {label: '=', id:'equal'},
+        {label: '/', id:'divide'}
+    ];
+
     const [state, dispatch] = useReducer(slotReducer,initialState);
 
     return (
         <div className="calculator">
-            <span>First Slot:{state.slots[0]}</span><br/>
-            <span>Active Op: {state.activeOperation}</span><br/>
-            <span>Second Slot: {state.slots[1]}</span>
             <Display displayValue={state.slots[1]===undefined?state.slots[0]:state.slots[1]}/>
             <Controls>
-                {buttons.map((b)=>(
-                    <Button
-                        activeOperation={state.activeOperation}
-                        value={b}
+                {buttons.map((b, index)=> {
+                    const activeClass = state.activeOperation === b.label;
+                    return <Button
+                        key={index}
+                        id={b.id}
+                        isActive={activeClass}
+                        label={b.label}
                         operation={dispatch}/>
-                ))}
+                })}
             </Controls>
         </div>
     )

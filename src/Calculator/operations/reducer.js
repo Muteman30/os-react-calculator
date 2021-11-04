@@ -103,14 +103,21 @@ const clearAllSlots = (state)=>{
         slots: [undefined, '0']
     }
 }
+
 const invertAbsolution = (state)=>{
     const amendedSlots = [...state.slots];
     amendedSlots[1] = amendedSlots[1]*-1;
     return {...state, slots:amendedSlots}
 }
+
 const addToDisplay = (state, num)=>{
     const amendedSlots = [...state.slots];
     amendedSlots[1] = amendedSlots[1]===undefined ? '' : amendedSlots[1];
-    amendedSlots[1] = (amendedSlots[1].toString()+num.toString()).replace(/^0+/, '')
+    if(amendedSlots[1].toString().indexOf('.') > -1 && num === '.'){
+        //do nothing
+    } else {
+        amendedSlots[1] = (amendedSlots[1].toString()+num.toString()).replace(/^0+/, '');
+
+    }
     return {...state, slots:amendedSlots};
 }

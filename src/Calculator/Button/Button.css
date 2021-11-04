@@ -5,8 +5,14 @@
     width:5rem;
     margin:0.1em;
     cursor:pointer;
+    border:0;
+    font-size:2rem;
     border-radius: 0.3rem;
     text-align: center;
+}
+
+.calc-button.active{
+    box-shadow:inset 1px 1px 0px 0px white;
 }
 
 .calc-button:hover{
